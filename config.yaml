@@ -1,0 +1,168 @@
+substitutions:
+  name: "hydrobot"
+  friendly_name: "Potager Salon"
+  wifi_ssid: "MON_WIFI"
+  wifi_password: "MON_MOT_DE_PASSE"
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  platform: ESP32
+  board: esp32dev # WROOM-32 DevKit
+
+wifi:
+  ssid: ${wifi_ssid}
+  password: ${wifi_password}
+  # Active le mode "Point d'accès" si la connexion échoue
+  ap:
+    ssid: "${name}-hotspot"
+
+# Active l'API native pour Home Assistant
+api:
+  password: ""
+
+# Active les logs (utile pour le debug USB)
+logger:
+  level: DEBUG
+
+# Serveur Web de secours (optionnel)
+web_server:
+  port: 80
+
+# Gestion de l'heure (Nécessaire pour les cycles jour/nuit)
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+# Configuration du Bus I2C (Pour BME280 et BH1750)
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+  id: bus_a
+
+# --- SORTIES (ACTUATEURS) ---
+
+# 1. La Lumière (PWM Dimming via MOSFET)
+output:
+  - platform: ledc
+    pin: GPIO16
+    id: grow_light_pwm
+    frequency: 1000Hz
+
+light:
+  - platform: monochromatic
+    output: grow_light_pwm
+    name: "${friendly_name} Lumière"
+    id: potager_lumiere
+    default_transition_length: 30s # Allumage progressif (lever de soleil)
+    restore_mode: RESTORE_DEFAULT_OFF
+
+# 2. La Pompe à Eau (Relais 5V)
+switch:
+  - platform: gpio
+    pin: GPIO4
+    name: "${friendly_name} Pompe"
+    id: potager_pompe
+    restore_mode: RESTORE_DEFAULT_OFF
+
+# --- CAPTEURS ---
+
+sensor:
+  # Capteur Air (BME280)
+  - platform: bme280
+    i2c_id: bus_a
+    address: 0x76 # Vérifier si c'est 0x76 ou 0x77
+    temperature:
+      name: "${friendly_name} Température Air"
+    humidity:
+      name: "${friendly_name} Humidité Air"
+    pressure:
+      name: "${friendly_name} Pression"
+    update_interval: 60s
+
+  # Capteur Luminosité (BH1750)
+  - platform: bh1750
+    i2c_id: bus_a
+    address: 0x23
+    name: "${friendly_name} Luminosité Lux"
+    update_interval: 10s
+
+  # Capteur Niveau d'Eau Capacitif (Jauge 0-100%)
+  - platform: adc
+    pin: GPIO34
+    name: "${friendly_name} Niveau Eau"
+    id: water_level_gauge
+    update_interval: 60s
+    attenuation: 11db
+    filters:
+      - sliding_window_moving_average:
+          window_size: 10
+          send_every: 1
+      # Calibration Jauge : A faire soi-même !
+      # 1. Relever la valeur "Brut" quand le capteur pendouille dans l'air (Vide)
+      # 2. Relever la valeur "Brut" quand le réservoir est plein (Plein)
+      - calibrate_linear:
+          - 2800 -> 0.0   # Valeur VIDE (Air)
+          - 1200 -> 100.0 # Valeur PLEIN (Eau)
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+
+# Capteur Niveau d'eau (Flotteur / Contact Sec)
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO25
+      mode: INPUT_PULLUP
+    name: "${friendly_name} Alerte Eau"
+    device_class: moisture
+    filters:
+      - delayed_on: 10s # Evite les faux positifs si l'eau bouge
+      - invert: true # Si flotteur en bas = circuit ouvert = alerte
+
+# --- AUTOMATISATIONS LOCALES (Fonctionne même sans Wifi) ---
+
+# Cycle Lumière (14h de jour / 10h de nuit)
+# S'adapte à la luminosité ambiante (BH1750)
+interval:
+  - interval: 5min
+    then:
+      - if:
+          condition:
+            and:
+              - time.has_time: # Vérifie qu'on a l'heure
+              # Entre 7h00 et 21h00
+              - lambda: 'return id(homeassistant_time).now().hour >= 7 && id(homeassistant_time).now().hour < 21;'
+          then:
+            # Si lumière ambiante < 500 Lux (il fait sombre), on allume à 100%
+            # Si lumière ambiante > 5000 Lux (grand soleil), on baisse à 50%
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: bh1750_lux
+                    below: 500
+                then:
+                  - light.turn_on:
+                      id: potager_lumiere
+                      brightness: 100%
+                else:
+                  - if:
+                      condition:
+                        sensor.in_range:
+                          id: bh1750_lux
+                          above: 2000
+                      then:
+                        - light.turn_on:
+                            id: potager_lumiere
+                            brightness: 60% # Economie d'énergie
+          else:
+            # La nuit (après 21h), on éteint tout
+            - light.turn_off: potager_lumiere
+
+# Cycle Pompe (15min ON toutes les heures)
+# Optionnel : désactivable pour la nuit
+  - interval: 60min
+    then:
+      - switch.turn_on: potager_pompe
+      - delay: 15min
+      - switch.turn_off: potager_pompe
