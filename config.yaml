@@ -88,6 +88,22 @@ sensor:
     name: "${friendly_name} Luminosité Lux"
     update_interval: 10s
 
+  # --- OPTION DIY ENERGY ---
+  # Capteur de Courant/Tension INA226 (Max 36V)
+  # Decommenter si installé (Adresse I2C par défaut 0x40)
+  # - platform: ina226
+  #   i2c_id: bus_a
+  #   address: 0x40
+  #   shunt_resistance: 0.1 ohm # Vérifier la résistance du shunt sur le module (souvent R100)
+  #   current:
+  #     name: "${friendly_name} Courant"
+  #   power:
+  #     name: "${friendly_name} Puissance"
+  #     id: power_sensor
+  #   bus_voltage:
+  #     name: "${friendly_name} Tension"
+  #   update_interval: 60s
+
   # Capteur Niveau d'Eau Capacitif (Jauge 0-100%)
   - platform: adc
     pin: GPIO34

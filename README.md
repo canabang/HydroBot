@@ -2,32 +2,62 @@
 
 Un système de jardinage d'intérieur intelligent et hackable, basé sur un kit hydroponique standard modifié avec un ESP32 pour une intégration complète dans Home Assistant (ESPHome).
 
-## 💡 Idées de Noms pour le Projet
-Si ce nom ne te plaît pas, voici d'autres suggestions :
-1.  `smart-grow-box`
-2.  `esphome-hydroponics`
-3.  `ha-indoor-garden`
-4.  `green-esp32`
+## 🎯 Objectifs du Projet
+Transformer un kit hydroponique "bête" en un robot jardinier autonome et connecté.
+
+### 👁️ Ce qu'il surveille :
+*   **🌱 Sol :** Humidité de la terre (Capacitif) pour savoir quand les racines ont soif.
+*   **💧 Eau :** Niveau du réservoir (0-100%) + Alerte critique (Flotteur) pour ne pas griller la pompe.
+*   **🌡️ Air :** Température, Humidité et Pression atmosphérique (BME280).
+*   **☀️ Lumière :** Intensité lumineuse ambiante (BH1750) pour adapter l'éclairage.
+
+### 🤖 Ce qu'il gère :
+*   **💡 Soleil Artificiel :** Cycle Jour/Nuit automatique avec allumage progressif (PWM 30s) pour respecter le rythme des plantes.
+*   **🌊 Arrosage :** Pilotage de la pompe (Cycles ON/OFF programmables, ex: 15min/h).
+*   **🏠 Home Assistant :** Remontée de toutes les stats et pilotage manuel via WiFi (ESPHome).
 
 ---
 
 ## 🛒 Liste des Courses & Coûts Estimés
 Voici le matériel nécessaire (liens validés).
 
-| Composant | Modèle & Lien | Prix Approx. |
+## 💰 Budget Comparatif
+
+Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'électronique).
+**La base reste la même (Amazon) pour la qualité/SAV.**
+
+| Composant | Option A : Tout Amazon (Rapide) | Option B : Mixte (Éco) |
 | :--- | :--- | :--- |
-| **Le Kit de Base** | [Kit Hydroponique 12 Capsules (Amazon)](https://www.amazon.fr/dp/B0D83Q2BG6) <br> *Base "bête" à hacker (Bac + Pompe + LED).* | ~ 50,00 € |
-| **Cerveau** | **ESP32 WROOM-32** (38 pins) | ~ 6,00 € |
-| **Alimentation** | [Buck Converter VISSQH](https://www.amazon.fr/dp/B0D5QZ16MR) <br> *Pour passer du 24V du kit au 5V de l'ESP.* | ~ 10,00 € (lot) |
-| **Lumière (PWM)** | [MOSFET IRLZ44N](https://www.amazon.fr/dp/B0CBKH4XGL) <br> *Lot de 10. Logic Level (3.3V) pour le dimming LED.* | ~ 7,00 € (lot) |
-| **Pompe (ON/OFF)** | [Relais 5V Optocouplé (DollaTek)](https://www.amazon.fr/dp/B07DJ4NRC1) <br> *Pour piloter la pompe.* | ~ 6,00 € |
-| **Niveau (Jauge)** | [Capteur Capacitif v1.2 (AZDelivery)](https://www.amazon.fr/dp/B07HJ6N1S4) <br> *⚠️ À vernir/siliconer en haut ! Sert de jauge 0-100%.* | ~ 2,00 € |
-| **Niveau (Alerte)** | [Flotteur Vertical (Sourcingmap)](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) <br> *Sécurité coupure pompe si vide.* | ~ 6,00 € |
-| **Air** | **BME280** (Temp/Hum/Pression) | ~ 4,00 € |
-| **Lumière Ambiante** | **BH1750** (Stock) | - |
-| **Total Estimé** | | **~ 91,00 €** |
+| **Kit Base** | [Amazon (12 Capsules)](https://www.amazon.fr/dp/B0D83Q2BG6) : **69,98 €** | [Amazon (12 Capsules)](https://www.amazon.fr/dp/B0D83Q2BG6) : **69,98 €** |
+| **ESP32** | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 3,69 € |
+| **Buck Conv.** | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007055625007.html) : 1,48 € |
+| **MOSFET** | [Amazon (Lot)](https://www.amazon.fr/dp/B0CBKH4XGL) : 11,99 € | [AliExpress](https://fr.aliexpress.com/item/1005009242758699.html) : 2,11 € |
+| **Relais 5V** | [Amazon](https://www.amazon.fr/dp/B07DJ4NRC1) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005319972049.html) : 1,99 € |
+| **Capa. Soil** | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
+| **Flotteur** | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005003292793524.html) : 1,82 € |
+| **BME280** | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
+| **TOTAL** | **~ 125,08 €** | **~ 83,21 €** |
+| **Gain** | - | **41,87 €** (et du rab !) |
+
+*Note : Les prix AliExpress incluent la livraison standard (souvent gratuite ou faible), mais compte 10-15 jours de délai.*
 
 ---
+
+## 🤔 Dilemme : DIY vs LetPot ?
+
+Tu hésites à "te faire chier" avec le DIY ? Voici le comparatif honnête pour t'aider à trancher.
+
+| Critère | 🤖 HydroBot (DIY) | 📦 LetPot (Commercial) |
+| :--- | :--- | :--- |
+| **Prix** | **~ 83 €** (Mixte) à **125 €** (Amazon) | **~ 100-150 €** (Selon promo) |
+| **Effort** | 🛠️ **Moyen** (Soudure, Flash, Montage) | 🟢 **Nul** (Plug & Play) |
+| **Home Assistant** | ✅ **100% Local** (ESPHome) <br> *Zéro Latence, Zéro Cloud.* | ☁️ **Cloud** (Intégration Tuya/LetPot) <br> *Dépend d'internet + Compte chinois.* |
+| **Réparabilité** | ⭐⭐⭐⭐⭐ (Tout se change pour <5€) | ⭐⭐ (Si l'électronique lâche, c'est poubelle) |
+| **Satisfaction** | 🏆 "C'est moi qui l'ai fait !" | 😐 "J'ai acheté un truc." |
+
+**Verdict :**
+*   Choisis **LetPot** si tu veux **juste des plantes** sans bricoler et que le Cloud ne te gêne pas.
+*   Garde **HydroBot** si tu veux un **objet unique**, durable, et totalement privé pour ton Home Assistant.
 
 ## 🔌 Plan de Câblage (ESP32 38-pin)
 
@@ -39,8 +69,20 @@ Voici le matériel nécessaire (liens validés).
 | **Pompe Eau** | GPIO **4** | Switch | Via Relais (IN). |
 | **Jauge (Capacitif)** | GPIO **34** | Analog Input | Pin "Input Only", parfait pour l'ADC. |
 | **Flotteur (Alerte)** | GPIO **25** | Binary Input | Mode `INPUT_PULLUP`. Circuit fermé = Eau OK. |
+| **INA226 (Option)** | I2C (21/22) | Power Monitor | *Adresse 0x40. Monitorer conso 24V.* |
 
 *Note : Alimenter l'ESP32 via le pin 5V (VIN) sortie du Buck Converter.*
+
+## ⚡ Monitoring Énergie (Optionnel)
+Tu veux savoir combien ça consomme ? Deux options :
+
+1.  **La Prise Connectée (Recommandé)** :
+    *   Branche tout le système sur une prise Zigbee (ex: **[NOUS A1Z](https://www.amazon.fr/dp/B0054PSKYW)** ou **Sonoff S26**).
+    *   ✅ **Avantages** : Précis, Sécurisé, "Kill-Switch" d'urgence, Zéro câblage.
+2.  **Le Capteur Intégré (DIY)** :
+    *   Ajoute un module **[INA226 (AliExpress)](https://fr.aliexpress.com/item/1005003292793524.html)** sur le bus I2C.
+    *   ⚠️ **Attention** : Prends bien un **INA226** (Max 36V) et PAS un INA219 (Max 26V), car le kit est en 24V (trop risqué pour le 219).
+    *   *Câblage* : VIN+ sur le 24V, VIN- vers le kit. I2C sur GPIO 21/22.
 
 ---
 
@@ -51,4 +93,21 @@ Voici le matériel nécessaire (liens validés).
 4.  **Câbler** selon le tableau ci-dessus.
 5.  **Protéger** le capteur capacitif (vernis) avant immersion.
 6.  **Flasher** le code ESPHome.
+
+---
+
+## 🥬 Consommables & Semis
+Pour démarrer tes cultures, il te faudra :
+
+### 🌟 Option Tout-en-un (Recommandé)
+*   **[Kit de Recharge Yoocaa (Amazon)](https://www.amazon.fr/dp/B09L17SJJ4)** : Contient **Éponges + Engrais A&B Solide**.
+    *   *Note : Les paniers ne s'achètent pas en recharge, tu réutiliseras ceux fournis avec le bac.*
+
+### 🛠️ Option au Détail
+1.  **Les Éponges (Substrat)** : Cherche **"Éponges de culture hydroponique"** sur Amazon/AliExpress.
+    *   *Astuce* : Prends les "compatibles AeroGarden/iDOO", c'est le standard qui rentre partout.
+2.  **Les Paniers** : Normalement fournis avec le kit, mais si besoin cherche **"Paniers culture hydroponique"**.
+3.  **La Nourriture (Engrais)** : Cherche **"Engrais Hydroponique A+B"**.
+    *   *Important* : Il faut un engrais LIQUIDE spécial hydro (souvent vendu en 2 bouteilles A et B à mélanger). N'utilise pas d'engrais terreau classique !
+4.  **Les Graines** : N'importe quelles graines de commerce (Basilic, Laitue, Tomates Cerises...).
 
