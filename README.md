@@ -41,10 +41,10 @@ Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'él
 | **Capa. Soil**<br>*Détourné de son usage : Mesure le niveau d'eau (0-100%) dans le bac.* | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
 | **Flotteur**<br>*Sécurité: Coupe la pompe physiquement si le bac est vide.* | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005003292793524.html) : 1,82 € |
 | **BME280**<br>*Capteur de climat (Temp/Hum/Pression) autour des feuilles.* | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
-| **BH1750**<br>*Capteur de luminosité (Lux) pour baisser/monter les LEDs selon le soleil.* | (Inclus avec BME) | (Inclus avec BME) |
-| **DS18B20**<br>*Sonde étanche pour l'alerte température d'eau.* | (En Stock) : 0,00 € | (En Stock) : 0,00 € |
-| **TOTAL** | **~ 125,08 €** | **~ 83,21 €** |
-| **Gain** | - | **41,87 €** (et du rab !) |
+| **BH1750**<br>*Capteur de luminosité (Lux) pour baisser/monter les LEDs selon le soleil.* | [Amazon (Lot de 3)](https://www.amazon.fr/ICQUANZX-BH1750FVI-DIntensit%C3%A9-Num%C3%A9rique-Alimentation/dp/B07VF15XJJ) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005009671465215.html) : 0,99 € |
+| **DS18B20**<br>*Sonde étanche pour l'alerte température d'eau.* | [Amazon (Lot de 3)](https://www.amazon.fr/OUDQFCJ-capteur-temp%C3%A9rature-num%C3%A9rique-inoxydable/dp/B0D1G5BVGV) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005004899620913.html) : 1,26 € |
+| **TOTAL** | **~ 140,06 €** | **~ 85,46 €** |
+| **Gain** | - | **54,60 €** (et du rab !) |
 
 *Note : Les prix AliExpress incluent la livraison standard (souvent gratuite ou faible), mais compte 10-15 jours de délai.*
 
