@@ -6,15 +6,20 @@ Un système de jardinage d'intérieur intelligent et hackable, basé sur un kit 
 Transformer un kit hydroponique "bête" en un robot jardinier autonome et connecté.
 
 ### 👁️ Ce qu'il surveille :
-*   **🌱 Sol :** Humidité de la terre (Capacitif) pour savoir quand les racines ont soif.
-*   **💧 Eau :** Niveau du réservoir (0-100%) + Alerte critique (Flotteur) pour ne pas griller la pompe.
-*   **🌡️ Air :** Température, Humidité et Pression atmosphérique (BME280).
-*   **☀️ Lumière :** Intensité lumineuse ambiante (BH1750) pour adapter l'éclairage.
+*   **💧 Eau (Niveau) :** Jauge du réservoir (0-100%) via le capteur capacitif + Alerte critique via un Flotteur physique (pour stopper et ne pas griller la pompe si le bac est vide).
+*   **🌡️ Eau (Température) :** Température de la solution nutritive (DS18B20) pour éviter la prolifération de bactéries (Pythium).
+*   **🌡️ Air :** Température, Humidité et Pression atmosphérique de la pièce (BME280).
+*   **☀️ Lumière :** Intensité lumineuse ambiante (BH1750) pour adapter automatiquement la puissance de l'éclairage.
 
 ### 🤖 Ce qu'il gère :
-*   **💡 Soleil Artificiel :** Cycle Jour/Nuit automatique avec allumage progressif (PWM 30s) pour respecter le rythme des plantes.
-*   **🌊 Arrosage :** Pilotage de la pompe (Cycles ON/OFF programmables, ex: 15min/h).
-*   **🏠 Home Assistant :** Remontée de toutes les stats et pilotage manuel via WiFi (ESPHome).
+*   **💡 Soleil Artificiel (2 Canaux) :** Gestion indépendante de la Croissance (Blanc/Bleu) et Floraison (Rouge) via 2 MOSFETs. Allumage progressif (PWM 30s).
+*   **🌊 Arrosage :** Pilotage de la pompe de circulation d'eau (Cycle 30min ON / 30min OFF par défaut).
+*   **🏠 Home Assistant (Le Cerveau) :**
+    *   **Contrôle Total des Lumières :** Pilotage séparé ou combiné des canaux Blanc/Bleu et Rouge. Tu as des boutons ON/OFF dédiés et des curseurs pour régler l'intensité de 0% à 100% pour chaque canal.
+    *   **Pilotage Pompe :** Bouton pour forcer l'allumage manuel ou l'arrêt de la pompe hors cycle.
+    *   **Automatisations Avancées :** Possibilité de créer des alertes (ex: *Notification push si niveau d'eau à 10%* ou *Alerte TTS si l'eau dépasse 24°C*).
+    *   **Historisation :** Graphiques pour suivre la croissance et la consommation via InfluxDB/Grafana.
+    *   **Dashboard :** Création d'une "Mushroom Card" dédiée au potager dans ton interface murale.
 
 ---
 
@@ -26,16 +31,18 @@ Voici le matériel nécessaire (liens validés).
 Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'électronique).
 **La base reste la même (Amazon) pour la qualité/SAV.**
 
-| Composant | Option A : Tout Amazon (Rapide) | Option B : Mixte (Éco) |
+| Composant & Rôle | Option A : Tout Amazon (Rapide) | Option B : Mixte (Éco) |
 | :--- | :--- | :--- |
-| **Kit Base** | [Amazon (12 Capsules)](https://www.amazon.fr/dp/B0D83Q2BG6) : **69,98 €** | [Amazon (12 Capsules)](https://www.amazon.fr/dp/B0D83Q2BG6) : **69,98 €** |
-| **ESP32** | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 3,69 € |
-| **Buck Conv.** | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007055625007.html) : 1,48 € |
-| **MOSFET** | [Amazon (Lot)](https://www.amazon.fr/dp/B0CBKH4XGL) : 11,99 € | [AliExpress](https://fr.aliexpress.com/item/1005009242758699.html) : 2,11 € |
-| **Relais 5V** | [Amazon](https://www.amazon.fr/dp/B07DJ4NRC1) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005319972049.html) : 1,99 € |
-| **Capa. Soil** | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
-| **Flotteur** | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005003292793524.html) : 1,82 € |
-| **BME280** | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
+| **Kit Base Yoocaa**<br>*Bac, pompe intégrée, et rampe LED d'origine.* | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** |
+| **ESP32**<br>*Le cerveau avec Wi-Fi pour Home Assistant.* | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 3,69 € |
+| **Buck Converter**<br>*Abaisse le 24V du potager en 5V pour alimenter l'ESP32.* | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007055625007.html) : 1,48 € |
+| **MOSFET (x2)**<br>*Interrupteurs pour régler l'intensité des LEDs (Croissance/Floraison).* | [Amazon (Lot)](https://www.amazon.fr/dp/B0CBKH4XGL) : 11,99 € | [AliExpress](https://fr.aliexpress.com/item/1005009242758699.html) : 2,11 € |
+| **Relais 5V**<br>*Interrupteur "ON/OFF" brut pour allumer/éteindre la pompe à eau.* | [Amazon](https://www.amazon.fr/dp/B07DJ4NRC1) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005319972049.html) : 1,99 € |
+| **Capa. Soil**<br>*Détourné de son usage : Mesure le niveau d'eau (0-100%) dans le bac.* | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
+| **Flotteur**<br>*Sécurité: Coupe la pompe physiquement si le bac est vide.* | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005003292793524.html) : 1,82 € |
+| **BME280**<br>*Capteur de climat (Temp/Hum/Pression) autour des feuilles.* | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
+| **BH1750**<br>*Capteur de luminosité (Lux) pour baisser/monter les LEDs selon le soleil.* | (Inclus avec BME) | (Inclus avec BME) |
+| **DS18B20**<br>*Sonde étanche pour l'alerte température d'eau.* | (En Stock) : 0,00 € | (En Stock) : 0,00 € |
 | **TOTAL** | **~ 125,08 €** | **~ 83,21 €** |
 | **Gain** | - | **41,87 €** (et du rab !) |
 
@@ -43,46 +50,23 @@ Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'él
 
 ---
 
-## 🤔 Dilemme : DIY vs LetPot ?
-
-Tu hésites à "te faire chier" avec le DIY ? Voici le comparatif honnête pour t'aider à trancher.
-
-| Critère | 🤖 HydroBot (DIY) | 📦 LetPot (Commercial) |
-| :--- | :--- | :--- |
-| **Prix** | **~ 83 €** (Mixte) à **125 €** (Amazon) | **~ 100-150 €** (Selon promo) |
-| **Effort** | 🛠️ **Moyen** (Soudure, Flash, Montage) | 🟢 **Nul** (Plug & Play) |
-| **Home Assistant** | ✅ **100% Local** (ESPHome) <br> *Zéro Latence, Zéro Cloud.* | ☁️ **Cloud** (Intégration Tuya/LetPot) <br> *Dépend d'internet + Compte chinois.* |
-| **Réparabilité** | ⭐⭐⭐⭐⭐ (Tout se change pour <5€) | ⭐⭐ (Si l'électronique lâche, c'est poubelle) |
-| **Satisfaction** | 🏆 "C'est moi qui l'ai fait !" | 😐 "J'ai acheté un truc." |
-
-**Verdict :**
-*   Choisis **LetPot** si tu veux **juste des plantes** sans bricoler et que le Cloud ne te gêne pas.
-*   Garde **HydroBot** si tu veux un **objet unique**, durable, et totalement privé pour ton Home Assistant.
-
 ## 🔌 Plan de Câblage (ESP32 38-pin)
 
 | Composant | Pin ESP32 | Type | Notes |
 | :--- | :--- | :--- | :--- |
 | **I2C SDA** | GPIO **21** | Data | Pour BME280 & BH1750 (En parallèle) |
 | **I2C SCL** | GPIO **22** | Clock | Pour BME280 & BH1750 (En parallèle) |
-| **Lumière LED** | GPIO **16** | PWM Output | Via MOSFET (Gate). Résistance 10k recommandée. |
+| **Lumière Croissance**| GPIO **16** | PWM Output | Via MOSFET 1 (LEDs Blanches/Bleues). |
+| **Lumière Floraison** | GPIO **17** | PWM Output | Via MOSFET 2 (LEDs Rouges). |
 | **Pompe Eau** | GPIO **4** | Switch | Via Relais (IN). |
 | **Jauge (Capacitif)** | GPIO **34** | Analog Input | Pin "Input Only", parfait pour l'ADC. |
 | **Flotteur (Alerte)** | GPIO **25** | Binary Input | Mode `INPUT_PULLUP`. Circuit fermé = Eau OK. |
-| **INA226 (Option)** | I2C (21/22) | Power Monitor | *Adresse 0x40. Monitorer conso 24V.* |
+| **Température Eau** | GPIO **26** | 1-Wire | Capteur DS18B20 étanche. Besoin résistance 4.7k entre Data et 3.3V. |
 
 *Note : Alimenter l'ESP32 via le pin 5V (VIN) sortie du Buck Converter.*
 
-## ⚡ Monitoring Énergie (Optionnel)
-Tu veux savoir combien ça consomme ? Deux options :
-
-1.  **La Prise Connectée (Recommandé)** :
-    *   Branche tout le système sur une prise Zigbee (ex: **[NOUS A1Z](https://www.amazon.fr/dp/B0054PSKYW)** ou **Sonoff S26**).
-    *   ✅ **Avantages** : Précis, Sécurisé, "Kill-Switch" d'urgence, Zéro câblage.
-2.  **Le Capteur Intégré (DIY)** :
-    *   Ajoute un module **[INA226 (AliExpress)](https://fr.aliexpress.com/item/1005003292793524.html)** sur le bus I2C.
-    *   ⚠️ **Attention** : Prends bien un **INA226** (Max 36V) et PAS un INA219 (Max 26V), car le kit est en 24V (trop risqué pour le 219).
-    *   *Câblage* : VIN+ sur le 24V, VIN- vers le kit. I2C sur GPIO 21/22.
+## ⚡ Monitoring Énergie
+La gestion de l'énergie et la remontée de consommation se feront via une **prise connectée Zigbee** (ex: NOUS A1Z ou Sonoff S26).
 
 ---
 

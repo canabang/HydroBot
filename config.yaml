@@ -43,19 +43,29 @@ i2c:
 
 # --- SORTIES (ACTUATEURS) ---
 
-# 1. La Lumière (PWM Dimming via MOSFET)
+# 1. La Lumière (PWM Dimming via 2 MOSFETs)
 output:
   - platform: ledc
     pin: GPIO16
-    id: grow_light_pwm
+    id: light_pwm_blanc
+    frequency: 1000Hz
+  - platform: ledc
+    pin: GPIO17
+    id: light_pwm_rouge
     frequency: 1000Hz
 
 light:
   - platform: monochromatic
-    output: grow_light_pwm
-    name: "${friendly_name} Lumière"
-    id: potager_lumiere
-    default_transition_length: 30s # Allumage progressif (lever de soleil)
+    output: light_pwm_blanc
+    name: "${friendly_name} Croissance (Blanc/Bleu)"
+    id: potager_lumiere_blanc
+    default_transition_length: 30s
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: monochromatic
+    output: light_pwm_rouge
+    name: "${friendly_name} Floraison (Rouge)"
+    id: potager_lumiere_rouge
+    default_transition_length: 30s
     restore_mode: RESTORE_DEFAULT_OFF
 
 # 2. La Pompe à Eau (Relais 5V)
@@ -88,22 +98,6 @@ sensor:
     name: "${friendly_name} Luminosité Lux"
     update_interval: 10s
 
-  # --- OPTION DIY ENERGY ---
-  # Capteur de Courant/Tension INA226 (Max 36V)
-  # Decommenter si installé (Adresse I2C par défaut 0x40)
-  # - platform: ina226
-  #   i2c_id: bus_a
-  #   address: 0x40
-  #   shunt_resistance: 0.1 ohm # Vérifier la résistance du shunt sur le module (souvent R100)
-  #   current:
-  #     name: "${friendly_name} Courant"
-  #   power:
-  #     name: "${friendly_name} Puissance"
-  #     id: power_sensor
-  #   bus_voltage:
-  #     name: "${friendly_name} Tension"
-  #   update_interval: 60s
-
   # Capteur Niveau d'Eau Capacitif (Jauge 0-100%)
   - platform: adc
     pin: GPIO34
@@ -115,14 +109,22 @@ sensor:
       - sliding_window_moving_average:
           window_size: 10
           send_every: 1
-      # Calibration Jauge : A faire soi-même !
-      # 1. Relever la valeur "Brut" quand le capteur pendouille dans l'air (Vide)
-      # 2. Relever la valeur "Brut" quand le réservoir est plein (Plein)
       - calibrate_linear:
           - 2800 -> 0.0   # Valeur VIDE (Air)
           - 1200 -> 100.0 # Valeur PLEIN (Eau)
     unit_of_measurement: "%"
     accuracy_decimals: 0
+
+# Configuration One-Wire pour sonde DS18B20 (Température Eau)
+dallas:
+  - pin: GPIO26
+    update_interval: 60s
+
+sensor:
+  - platform: dallas
+    name: "${friendly_name} Température Eau"
+    # L'adresse apparaîtra dans les logs ESPHome au premier démarrage,
+    # il faudra ensuite l'ajouter ici sous la forme: address: 0xXXXXXXXXXXXXXXXX
 
 # Capteur Niveau d'eau (Flotteur / Contact Sec)
 binary_sensor:
@@ -159,7 +161,10 @@ interval:
                     below: 500
                 then:
                   - light.turn_on:
-                      id: potager_lumiere
+                      id: potager_lumiere_blanc
+                      brightness: 100%
+                  - light.turn_on:
+                      id: potager_lumiere_rouge
                       brightness: 100%
                 else:
                   - if:
@@ -169,16 +174,20 @@ interval:
                           above: 2000
                       then:
                         - light.turn_on:
-                            id: potager_lumiere
-                            brightness: 60% # Economie d'énergie
+                            id: potager_lumiere_blanc
+                            brightness: 60%
+                        - light.turn_on:
+                            id: potager_lumiere_rouge
+                            brightness: 60%
           else:
             # La nuit (après 21h), on éteint tout
-            - light.turn_off: potager_lumiere
+            - light.turn_off: potager_lumiere_blanc
+            - light.turn_off: potager_lumiere_rouge
 
-# Cycle Pompe (15min ON toutes les heures)
-# Optionnel : désactivable pour la nuit
+# Cycle Pompe (30min ON / 30min OFF - calqué sur système Yoocaa d'origine)
+# Optionnel : désactivable pour la nuit via ajout de conditions yaml
   - interval: 60min
     then:
       - switch.turn_on: potager_pompe
-      - delay: 15min
+      - delay: 30min
       - switch.turn_off: potager_pompe
