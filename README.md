@@ -31,7 +31,7 @@ Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'él
 
 | Composant & Rôle | Option A : Tout Amazon (Rapide) | Option B : Mixte (Éco) |
 | :--- | :--- | :--- |
-| **Kit Base Yoocaa**<br>*Bac, pompe intégrée, et rampe LED d'origine.* | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** |
+| **Kit Base Yoocaa**<br>*Bac, pompe intégrée, et rampe LED d'origine.* | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** | [Yoocaa (12 Capsules)](https: //www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** |
 | **ESP32 (Modèle WROOM-32 ou WROVER)**<br>*Le cerveau avec Wi-Fi pour Home Assistant.* | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 4.29 € |
 | **Carte d'Extension ESP32 (38 Pins)**<br>*Borniers à vis pour tout brancher proprement sans soudures "en l'air".* | [Amazon (Similaire)](https://www.amazon.fr/s?k=esp32+38+pin+expansion+board) : ~ 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005007840748529.html) : 2,59 € |
 | **Buck Converter (LM2596)**<br>*Abaisse le 24V du potager en 5V pour alimenter l'ESP32.* | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007053,695625007.html) : 1,49 € |
@@ -102,7 +102,7 @@ Afin de garder une trace du coût effectif du projet (qui diffère du budget th�
 
 | Date | Composants | Fournisseur | Coût Réel |
 | :--- | :--- | :--- | :--- |
-| **Fév. 2026** | Lot Électronique (2x ESP32, LM2596, 2x LR7843, Relais 5v, Capteur Capacitif, Flotteur, BME280) | AliExpress | **13,69 €** |
+| **Fév. 2026** | Lot Électronique (2x ESP32, LM2596, 2x LR7843, Relais 5v, CapteurCapacitif, Flotteur, BME280)<br>*Équivalent Amazon : ~ 59,45 €* | AliExpress | **13,69 €** |
 | **Déjà Acquis** | Carte d'Extension 38 pins, Capteur BH1750, Sonde étanche DS18B20 | N/A | **0,00 €** |
 | *À venir* | *Écran Tactile 4.3" Waveshare* | *Amazon* | *-* |
 | *À venir* | *Potager de base (Option : Yoocaa 12 Capsules)* | *Amazon* | *-* |
