@@ -17,9 +17,7 @@ Transformer un kit hydroponique "bête" en un robot jardinier autonome et connec
 *   **🏠 Home Assistant (Le Cerveau) :**
     *   **Contrôle Total des Lumières :** Pilotage séparé ou combiné des canaux Blanc/Bleu et Rouge. Tu as des boutons ON/OFF dédiés et des curseurs pour régler l'intensité de 0% à 100% pour chaque canal.
     *   **Pilotage Pompe :** Bouton pour forcer l'allumage manuel ou l'arrêt de la pompe hors cycle.
-    *   **Automatisations Avancées :** Possibilité de créer des alertes (ex: *Notification push si niveau d'eau à 10%* ou *Alerte TTS si l'eau dépasse 24°C*).
-    *   **Historisation :** Graphiques pour suivre la croissance et la consommation via InfluxDB/Grafana.
-    *   **Dashboard :** Création d'une "Mushroom Card" dédiée au potager dans ton interface murale.
+    *   **📱 Télécommande Tactile Dédiée :** Un écran déporté autonome de 4.3" (ESP32-S3) s'intègre au système pour le pilotage et l'affichage des graphiques (niveau d'eau, température).
 
 ---
 
@@ -43,8 +41,9 @@ Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'él
 | **BME280**<br>*Capteur de climat (Temp/Hum/Pression) autour des feuilles.* | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
 | **BH1750**<br>*Capteur de luminosité (Lux) pour baisser/monter les LEDs selon le soleil.* | [Amazon (Lot de 3)](https://www.amazon.fr/ICQUANZX-BH1750FVI-DIntensit%C3%A9-Num%C3%A9rique-Alimentation/dp/B07VF15XJJ) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005009671465215.html) : 0,99 € |
 | **DS18B20**<br>*Sonde étanche pour l'alerte température d'eau.* | [Amazon (Lot de 3)](https://www.amazon.fr/OUDQFCJ-capteur-temp%C3%A9rature-num%C3%A9rique-inoxydable/dp/B0D1G5BVGV) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005004899620913.html) : 1,26 € |
-| **TOTAL** | **~ 140,06 €** | **~ 85,46 €** |
-| **Gain** | - | **54,60 €** (et du rab !) |
+| **Écran Tactile 4.3"**<br>*Télécommande déportée indépendante (ESP32-S3).* | [Amazon (Waveshare)](https://www.amazon.fr/dp/B0CNZ6CHR7) : 41,79 € | [AliExpress (SpotPear)](https://fr.aliexpress.com/item/1005009526082638.html) : 37.39 € |
+| **TOTAL** | **~ 181,85 €** | **~ 122,85 €** |
+| **Gain** | - | **59,00 €** |
 
 *Note : Les prix AliExpress incluent la livraison standard (souvent gratuite ou faible), mais compte 10-15 jours de délai.*
 
