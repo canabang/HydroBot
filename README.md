@@ -32,18 +32,19 @@ Tu as le choix entre la rapidité (Amazon) ou l'économie (AliExpress pour l'él
 | Composant & Rôle | Option A : Tout Amazon (Rapide) | Option B : Mixte (Éco) |
 | :--- | :--- | :--- |
 | **Kit Base Yoocaa**<br>*Bac, pompe intégrée, et rampe LED d'origine.* | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** | [Yoocaa (12 Capsules)](https://www.amazon.fr/dp/B092D7L1Y8) : **69,98 €** |
-| **ESP32**<br>*Le cerveau avec Wi-Fi pour Home Assistant.* | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 3,69 € |
-| **Buck Converter**<br>*Abaisse le 24V du potager en 5V pour alimenter l'ESP32.* | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007055625007.html) : 1,48 € |
-| **MOSFET (x2)**<br>*Interrupteurs pour régler l'intensité des LEDs (Croissance/Floraison).* | [Amazon (Lot)](https://www.amazon.fr/dp/B0CBKH4XGL) : 11,99 € | [AliExpress](https://fr.aliexpress.com/item/1005009242758699.html) : 2,11 € |
-| **Relais 5V**<br>*Interrupteur "ON/OFF" brut pour allumer/éteindre la pompe à eau.* | [Amazon](https://www.amazon.fr/dp/B07DJ4NRC1) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005319972049.html) : 1,99 € |
-| **Capa. Soil**<br>*Détourné de son usage : Mesure le niveau d'eau (0-100%) dans le bac.* | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
-| **Flotteur**<br>*Sécurité: Coupe la pompe physiquement si le bac est vide.* | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005003292793524.html) : 1,82 € |
-| **BME280**<br>*Capteur de climat (Temp/Hum/Pression) autour des feuilles.* | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 0,98 € |
+| **ESP32 (Modèle WROOM-32 ou WROVER)**<br>*Le cerveau avec Wi-Fi pour Home Assistant.* | [Amazon](https://www.amazon.fr/dp/B071P98VTG) : 8,49 € | [AliExpress](https://fr.aliexpress.com/item/1005007820190456.html) : 4.29 € |
+| **Carte d'Extension ESP32 (38 Pins)**<br>*Borniers à vis pour tout brancher proprement sans soudures "en l'air".* | [Amazon (Similaire)](https://www.amazon.fr/s?k=esp32+38+pin+expansion+board) : ~ 8,99 € | [AliExpress](https://fr.aliexpress.com/item/1005007840748529.html) : 2,59 € |
+| **Buck Converter (LM2596)**<br>*Abaisse le 24V du potager en 5V pour alimenter l'ESP32.* | [Amazon (Lot)](https://www.amazon.fr/dp/B0D5QZ16MR) : 9,66 € | [AliExpress](https://fr.aliexpress.com/item/1005007053,695625007.html) : 1,49 € |
+| **Module MOSFET (D4184 ou LR7843) x2**<br>*Interrupteurs avec borniers pour régler l'intensité des LEDs sans soudure complexe.* | [Amazon (Lot de 5)](https://www.amazon.fr/dp/B0DG8KH7HQ) : 7,85 € | [AliExpress](https://fr.aliexpress.com/item/4000532890256.html) : 2x 0,77 € |
+| **Module Relais 5V (1 Canal)**<br>*Interrupteur "ON/OFF" brut pour allumer/éteindre la pompe à eau.* | [Amazon](https://www.amazon.fr/dp/B07DJ4NRC1) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005006280813881.html) : 1,12 € |
+| **Capteur Capacitif (v1.2 / v2.0)**<br>*Détourné de son usage : Mesure le niveau d'eau (0-100%) dans le bac.* | [Amazon (Lot)](https://www.amazon.fr/dp/B07HJ6N1S4) : 5,99 € | [AliExpress](https://fr.aliexpress.com/item/1005005973892592.html) : 1,16 € |
+| **Interrupteur à Flotteur**<br>*Sécurité: Coupe la pompe physiquement si le bac est vide.* | [Amazon](https://www.amazon.fr/s?k=sourcing+map+interrupteur+flotteur+vertical) : 8,99 € | [AliExpress](https://fr.aliexpress.com/item/33054312857.html) : 1,47 € |
+| **BME280**<br>*Capteur de climat (Temp/Hum/Pression) autour des feuilles.* | [Amazon](https://www.amazon.fr/dp/B07PAB23G3) : 4,99 € | [AliExpress](https://fr.aliexpress.com/item/1005008728942141.html) : 4,29 € |
 | **BH1750**<br>*Capteur de luminosité (Lux) pour baisser/monter les LEDs selon le soleil.* | [Amazon (Lot de 3)](https://www.amazon.fr/ICQUANZX-BH1750FVI-DIntensit%C3%A9-Num%C3%A9rique-Alimentation/dp/B07VF15XJJ) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005009671465215.html) : 0,99 € |
 | **DS18B20**<br>*Sonde étanche pour l'alerte température d'eau.* | [Amazon (Lot de 3)](https://www.amazon.fr/OUDQFCJ-capteur-temp%C3%A9rature-num%C3%A9rique-inoxydable/dp/B0D1G5BVGV) : 7,49 € | [AliExpress](https://fr.aliexpress.com/item/1005004899620913.html) : 1,26 € |
 | **Écran Tactile 4.3"**<br>*Télécommande déportée indépendante (ESP32-S3).* | [Amazon (Waveshare)](https://www.amazon.fr/dp/B0CNZ6CHR7) : 41,79 € | [AliExpress (SpotPear)](https://fr.aliexpress.com/item/1005009526082638.html) : 37.39 € |
-| **TOTAL** | **~ 181,85 €** | **~ 122,85 €** |
-| **Gain** | - | **59,00 €** |
+| **TOTAL** | **~ 186,70 €** | **~ 127,57 €** |
+| **Gain** | - | **59,13 €** |
 
 *Note : Les prix AliExpress incluent la livraison standard (souvent gratuite ou faible), mais compte 10-15 jours de délai.*
 
@@ -94,3 +95,15 @@ Pour démarrer tes cultures, il te faudra :
     *   *Important* : Il faut un engrais LIQUIDE spécial hydro (souvent vendu en 2 bouteilles A et B à mélanger). N'utilise pas d'engrais terreau classique !
 4.  **Les Graines** : N'importe quelles graines de commerce (Basilic, Laitue, Tomates Cerises...).
 
+---
+
+## 💰 Dépenses Réelles (Historique d'Achat)
+Afin de garder une trace du coût effectif du projet (qui diffère du budget théorique grâce à la récupération de matériel et aux promotions) :
+
+| Date | Composants | Fournisseur | Coût Réel |
+| :--- | :--- | :--- | :--- |
+| **Fév. 2026** | Lot Électronique (2x ESP32, LM2596, 2x LR7843, Relais 5v, Capteur Capacitif, Flotteur, BME280) | AliExpress | **13,69 €** |
+| **Déjà Acquis** | Carte d'Extension 38 pins, Capteur BH1750, Sonde étanche DS18B20 | N/A | **0,00 €** |
+| *À venir* | *Écran Tactile 4.3" Waveshare* | *Amazon* | *-* |
+| *À venir* | *Potager de base (Option : Yoocaa 12 Capsules)* | *Amazon* | *-* |
+| **TOTAL ACTUEL** | | | **13,69 €** |
