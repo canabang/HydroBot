@@ -97,6 +97,37 @@ Pour démarrer tes cultures, il te faudra :
 
 ---
 
+## 🌱 Guide Pas-à-Pas : Le Démarrage des Semis
+
+L'erreur numéro 1 des débutants est de mettre de l'engrais dès le premier jour. Les graines ont leur propre réserve d'énergie, l'engrais va les brûler ! Voici la méthode infaillible pour démarrer à partir de zéro :
+
+### Étape 1 : Le Semis (Jour 1)
+1.  **Préparation de l'eau :** Remplis le bac de ton potager jusqu'à la ligne "Max" avec de l'eau claire du robinet. **Aucun engrais pour l'instant !**
+2.  **Préparation de l'éponge :** Mouille complètement tes éponges (substrat) sous le robinet pour bien les hydrater avant de les utiliser.
+3.  **Les graines :** Place 2 à 3 graines maximum dans le petit trou au centre de chaque éponge (si tu mets trop de graines, elles vont s'étouffer entre elles plus tard).
+4.  **Mise en place :** Insère l'éponge dans le panier en plastique, puis place le panier dans un des trous du bac.
+5.  **L'effet Serre :** Recouvre chaque panier avec le petit dôme transparent en plastique (fourni avec le kit). Cela garde l'humidité à 100% pour réveiller la graine.
+6.  **Lumière & Pompe :** Allume la pompe (cycle de base, ex: 15min on / 45min off). Allume la lumière (12h à 14h par jour).
+
+### Étape 2 : La Germination (Jour 3 à Jour 14)
+*   Surveille tous les jours à travers les dômes.
+*   Dès que tu vois une plante sortir et que ses petites feuilles commencent à toucher le haut du dôme transparent, **retire le dôme définitivement**. Si tu le laisses, la plante va moisir.
+*   L'eau baisse un peu à cause de l'évaporation ? Rajoute juste de l'eau claire.
+
+### Étape 3 : Le Repas (Quand 2 vraies feuilles apparaissent)
+Au bout de 2 à 3 semaines, tes plantes feront entre 3 et 5 cm de haut et auront développé leurs "vraies feuilles" (pas les deux premières petites feuilles rondes de naissance). C'est le moment de les nourrir !
+1.  Vérifie que ton bac est rempli d'eau jusqu'au repère.
+2.  Prépare ton **engrais liquide A et B** en respectant les doses indiquées sur les bouteilles (généralement autour de 2 à 3 ml de chaque par litre d'eau).
+3.  *Astuce : verse bien le produit A, mélange l'eau, puis verse le produit B, ne mélange jamais les produits purs ensemble.*
+4.  Optionnel : C'est ici que tu peux ajuster le pH de ton eau (idéal 6.0) si tu as un testeur.
+
+### Étape 4 : L'Entretien (Chaque Semaine)
+*   Vérifie le niveau d'eau. Les grands plants de menthe ou basilic boivent énormément en été (plus d'un litre tous les 3 jours !).
+*   Rajoute de l'eau mélangée à de l'engrais (ne rajoute pas que de l'eau claire avec le temps, sinon l'eau va devenir pauvre en nutriments).
+*   **Taille tes plantes :** N'hésite pas à couper les têtes de ton basilic pour le forcer à faire des branches sur le côté, sinon il va pousser tout droit, toucher la lampe et brûler.
+
+---
+
 ## 💰 Dépenses Réelles (Historique d'Achat)
 Afin de garder une trace du coût effectif du projet (qui diffère du budget théorique grâce à la récupération de matériel et aux promotions) :
 
